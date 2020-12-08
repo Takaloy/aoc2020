@@ -5,13 +5,10 @@ import scala.io.Source
 object Day3 extends App{
 
   val fileName = "src/day3/input.txt"
-  val lines  = Source.fromFile(fileName).getLines().toList
-
-
-  val testlines = Source.fromFile("src/day3/test.txt").getLines().toList
+  val lines  = Source.fromFile(fileName).getLines().toVector
 
   //right first then down
-  def trees(lines: List[String], start: Int, right: Int, down: Int, total: Int) : Int = {
+  def trees(lines: Vector[String], start: Int, right: Int, down: Int, total: Int) : Int = {
 
     val remainingLines = lines.drop(down)
     val row = remainingLines.head
@@ -24,9 +21,9 @@ object Day3 extends App{
     //println(f"$row : $newStart from $start , $newTotal, ${row.length} starting with ${segment.last} on $segment")
 
     if (remainingLines.length <= down)
-      return newTotal
-
-    trees(remainingLines, newStart, right, down, newTotal)
+      newTotal
+    else
+      trees(remainingLines, newStart, right, down, newTotal)
   }
 
   def getSegment(row: String, start: Int, right: Int) : String = {

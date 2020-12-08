@@ -23,7 +23,7 @@ object Day3 extends App{
 
     //println(f"$row : $newStart from $start , $newTotal, ${row.length} starting with ${segment.last} on $segment")
 
-    if (remainingLines.length == 1)
+    if (remainingLines.length <= down)
       return newTotal
 
     trees(remainingLines, newStart, right, down, newTotal)
@@ -41,4 +41,13 @@ object Day3 extends App{
 
   val numberOfTrees = trees(lines,0,3,1,0)
   println(numberOfTrees)
+
+  val part2Trees =
+    trees(lines,0,1,1,0) *
+    trees(lines,0,3,1,0) *
+    trees(lines,0,5,1,0) *
+    trees(lines,0,7,1,0) *
+      trees(lines,0,1,2,0)
+
+  println(part2Trees)
 }

@@ -1,6 +1,5 @@
 package day4
 
-import scala.::
 import scala.io.Source
 
 object Day4 extends App {

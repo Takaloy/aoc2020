@@ -51,5 +51,20 @@ object Day7 extends App {
     policy.count(p => canFitIntoBags(policy, target, p._1))
   }
 
-  println(haveNumberOfOptionsFor(records,"shiny gold"))
+  println(s"Day 7 part 1 answer: ${haveNumberOfOptionsFor(records,"shiny gold")}")
+
+  def bagsRequiredFor(policy: Map[String, Set[(String, Int)]], target: String, accumulator: Int = 0) : Int = {
+    val targetPolicy = policy(target)
+
+    if (targetPolicy.isEmpty)
+      accumulator
+    else {
+      targetPolicy
+        .foldLeft(0) {
+          case (accB, (a, b)) => (accB + (bagsRequiredFor(policy,a) * b + b))
+        }
+    }
+  }
+
+  println(f"Day 7 part 2 answer: ${bagsRequiredFor(records,"shiny gold")}")
 }

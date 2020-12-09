@@ -40,4 +40,12 @@ object Day5 extends App {
   val highestSeatId = lines.map(getSeatId).max
 
   println(f"day 5 part 1 answer is .. $highestSeatId")
+
+  val allSeats = 85 to highestSeatId
+  val usedSeats = lines.map(getSeatId)
+
+  val emptySeats = allSeats.filter(a => !usedSeats.contains(a))
+
+  val result = emptySeats.mkString(",")
+  println(f"day 5 part 2 answer is ... ${result}")
 }
